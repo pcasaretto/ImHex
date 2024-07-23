@@ -51,14 +51,9 @@ message(STATUS "Fixing up application bundle: ${extra_dirs}")
 #	endif()
 #endfunction()
 
+include(InstallRequiredSystemLibraries)
 include(BundleUtilities)
 set(BU_CHMOD_BUNDLE_ITEMS ON)
-
-function(gp_resolved_file_type_override file type)
-  if(file MATCHES "^(/usr/lib)")
-    set(type "system" PARENT_SCOPE)
-  endif()
-endfunction()
 
 fixup_bundle("${BUNDLE_PATH}" "${plugins}" "${extra_dirs}")
 
