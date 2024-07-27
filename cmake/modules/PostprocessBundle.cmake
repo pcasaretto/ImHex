@@ -54,6 +54,8 @@ message(STATUS "Fixing up application bundle: ${extra_dirs}")
 include(BundleUtilities)
 set(BU_CHMOD_BUNDLE_ITEMS ON)
 
+fixup_bundle("${BUNDLE_PATH}" "${plugins}" "${extra_dirs}" IGNORE_ITEM "/usr/lib/libSystem.B.dylib")
+
 if (CODE_SIGN_CERTIFICATE_ID)
 	# Hack around Apple Silicon signing bugs by copying the real app, signing it and moving it back.
 	# IMPORTANT: DON'T USE ${CMAKE_COMMAND} -E copy_directory HERE (this follow symbolic links).
